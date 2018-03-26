@@ -19,7 +19,9 @@ Made with:
 * HTML
 * CSS custom styles
 * CSS Grid
-* JavaScript
+* JavaScript ES6
+* [Babel](https://babeljs.io/)
+* [Polyfill](https://polyfill.io/v2/docs/)
 
 Credits:
 
@@ -30,8 +32,5 @@ Credits:
 ### Demo and usage
 
 Live demo: [curved-transport.surge.sh](http://curved-transport.surge.sh/)
-
-The game was tested on Chrome, Firefox and Edge.
-It has no support for IE, because I am using newer ES6 features (such as template literals) and CSS Grid for layout.
 
 ![Screenshot of the Memory Card Game](./img/screenshot.jpg)
