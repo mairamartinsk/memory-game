@@ -132,8 +132,12 @@ body {
 .deck .card {
   max-width: 100%;
   max-height: 100%;
+  width: 150px;
+  height: 150px;
   background-image: url(../img/card-deck.png);
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   border-radius: 15px;
   -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.5);
@@ -220,6 +224,7 @@ body {
     opacity: 1;
   }
 }
+
 @keyframes animatetop {
   from {
     top: -300px;
@@ -277,37 +282,6 @@ body {
 }
 
 /* ********************************* */
-/* IE GRID */
-/* ********************************* */
-
-@media screen and (-ms-high-contrast: active),
-  screen and (-ms-high-contrast: none) {
-  /* IE10+ specific styles go here */
-  .container,
-  .deck {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .container .header {
-    flex: 1 0 1em;
-    max-width: 500px;
-  }
-
-  .container .deck {
-    flex-basis: calc(80% - 500px);
-    justify-content: space-between;
-    margin-right: 5vmin;
-  }
-
-  .deck > * {
-    flex-basis: 24%;
-    padding-bottom: 24% !important;
-    display: block;
-  }
-}
-
-/* ********************************* */
 /* CSS GRID SUPPORT */
 /* ********************************* */
 
@@ -326,10 +300,10 @@ body {
 
   .deck {
     margin: 0;
-    -ms-grid-columns: (150px) [4];
-    grid-template-columns: repeat(4, 150px);
-    -ms-grid-rows: (150px) [4];
-    grid-template-rows: repeat(4, 150px);
+    -ms-grid-columns: (1fr) [4];
+    grid-template-columns: repeat(4, 1fr);
+    -ms-grid-rows: (1fr) [4];
+    grid-template-rows: repeat(4, 1fr);
     grid-gap: 0.5em;
     grid-auto-flow: dense;
   }
@@ -343,14 +317,12 @@ body {
   .container {
     -ms-grid-columns: 1fr 3fr;
     grid-template-columns: 1fr 3fr;
-    margin: 1em 2vw;
+    margin: 2em 2vw;
   }
 
-  .deck {
-    -ms-grid-columns: (125px) [4];
-    grid-template-columns: repeat(4, 125px);
-    -ms-grid-rows: (125px) [4];
-    grid-template-rows: repeat(4, 125px);
+  .deck .card {
+    width: 125px;
+    height: 125px;
   }
 }
 
@@ -385,18 +357,19 @@ body {
   .deck {
     margin: 0 auto;
     padding: 0;
-    -ms-grid-columns: (150px) [4];
-    grid-template-columns: repeat(4, 150px);
-    -ms-grid-rows: (150px) [4];
-    grid-template-rows: repeat(4, 150px);
   }
 }
 
-@media screen and (max-width: 700px) {
-  .deck {
-    -ms-grid-columns: (minmax(50px, 125px)) [4];
-    grid-template-columns: repeat(4, minmax(50px, 125px));
-    -ms-grid-rows: (minmax(50px, 125px)) [4];
-    grid-template-rows: repeat(4, minmax(50px, 125px));
+@media screen and (max-width: 550px) {
+  .deck .card {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .deck .card {
+    width: 75px;
+    height: 75px;
   }
 }
