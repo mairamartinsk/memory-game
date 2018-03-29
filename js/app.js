@@ -33,22 +33,22 @@
   function generateCards() {
     // List of all different icons to display
     const cards = [
-      "01-money.png",
-      "02-key.png",
-      "03-potion.png",
-      "04-mushroom.png",
-      "05-ghost.png",
-      "06-pacman.png",
-      "07-aliens.png",
-      "08-ghost.png",
-      "01-money.png",
-      "02-key.png",
-      "03-potion.png",
-      "04-mushroom.png",
-      "05-ghost.png",
-      "06-pacman.png",
-      "07-aliens.png",
-      "08-ghost.png"
+      { id: "01", url: "01-money.png" },
+      { id: "02", url: "02-key.png" },
+      { id: "03", url: "03-potion.png" },
+      { id: "04", url: "04-mushroom.png" },
+      { id: "05", url: "05-ghost.png" },
+      { id: "06", url: "06-pacman.png" },
+      { id: "07", url: "07-aliens.png" },
+      { id: "08", url: "08-ghost.png" },
+      { id: "09", url: "01-money.png" },
+      { id: "10", url: "02-key.png" },
+      { id: "11", url: "03-potion.png" },
+      { id: "12", url: "04-mushroom.png" },
+      { id: "13", url: "05-ghost.png" },
+      { id: "14", url: "06-pacman.png" },
+      { id: "15", url: "07-aliens.png" },
+      { id: "16", url: "08-ghost.png" }
     ];
 
     // Shuffle list of icons calling Shuffle function
@@ -62,7 +62,9 @@
 
     for (card in cards) {
       const randomCard = document.createElement("li");
-      randomCard.innerHTML = `<img src="./img/${cards[card]}">`;
+      randomCard.innerHTML = `<img src="./img/${cards[card].url}" id="${
+        cards[card].id
+      }">`;
       randomCard.classList.add("card");
       fragment.appendChild(randomCard);
     }
@@ -93,6 +95,8 @@
     const cardClicked = event.target;
 
     if (cardClicked.tagName === "LI") {
+      if (cardClicked.tagName === "IMG") return;
+
       const openLimit = openCards.length;
 
       // Check that no more than 2 cards are open
@@ -103,15 +107,17 @@
 
       // Compare cards type
       if (openLimit === 1) {
-        if (openCards[0].children[0].src === openCards[1].children[0].src) {
+        if (
+          openCards[0].children[0].src === openCards[1].children[0].src &&
+          openCards[0].children[0].id !== openCards[1].children[0].id
+        ) {
           match();
           gameWin();
+          moveCounter();
         } else {
           setTimeout(noMatch, 500);
+          moveCounter();
         }
-        // If two cards are open, count as one move
-        moves++;
-        moveCounter();
         starRating();
       }
     }
@@ -119,6 +125,8 @@
 
   // Keep track of moves and display counter
   function moveCounter() {
+    moves++;
+
     if (moves === 0) {
       moveText.innerText = moves + " moves";
     } else if (moves === 1) {
@@ -126,6 +134,7 @@
     } else {
       moveText.innerText = moves + " moves";
     }
+
     moveText.innerHTML += ` <img src="./img/moves.png">`;
   }
 
@@ -212,6 +221,7 @@
     jsTime.innerHTML = `${minutes}:${seconds}`;
     jsStars.innerHTML = stars.innerHTML;
     jsMoves.innerHTML = moveText.textContent;
+    jsMoves++;
   }
 
   // If user clicks outside pop-up, close it
