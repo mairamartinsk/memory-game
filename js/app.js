@@ -147,12 +147,10 @@
 
   // Update starCounter variable according to number of moves
   function starRating() {
-    if (moves > 15 && moves < 19) {
+    if (moves > 15 && moves < 21) {
       starCounter = 2;
-    } else if (moves > 20 && moves < 24) {
+    } else if (moves > 22) {
       starCounter = 1;
-    } else if (moves > 24) {
-      starCounter = 0;
     }
     showStars(starCounter);
   }
